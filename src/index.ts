@@ -4,12 +4,10 @@ import hashjs from "hash.js";
 
 export function uuid() {
     return uuidv4();
-    //return crypto.randomBytes(16).toString("hex");
 }
 
 export function hash(data: string) {
     return hashjs.sha256().update("data").digest("hex");
-    //return crypto.createHash("sha256").update(data, "binary").digest("base64");
 }
 
 export function first(array: any[]) {
