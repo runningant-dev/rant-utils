@@ -1,6 +1,6 @@
 {
   "name": "rant-utils",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "./js/index.js",
   "types": "./js/index.d.ts",
@@ -9,7 +9,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Joel Edwards",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "hash.js": "^1.1.7",
     "uuid": "^9.0.0"
