@@ -1,13 +1,12 @@
-
 import { v4 as uuidv4 } from "uuid";
-import hashjs from "hash.js";
+import crypto from "crypto";
+
+export function hash(salt: string, value: string) {
+    return crypto.createHmac("sha256", salt).update(value).digest("hex");
+}
 
 export function uuid() {
     return uuidv4();
-}
-
-export function hash(data: string) {
-    return hashjs.sha256().update("data").digest("hex");
 }
 
 export function first(array: any[]) {
@@ -41,23 +40,23 @@ export function encodeSingleQuote(val: string) {
     return val.replace(/'/g, "''");
 }
 
-// remove key from the object and add back in at the end
-export function withoutKey(objects: any[], fn: () => void) {
-    const keys = [];
+// remove id from the object and add back in at the end
+export function withoutID(objects: any[], fn: () => void) {
+    const ids = [];
     
-    // save keys
+    // save ids
     for(let i=0;i<objects.length;i++) {
         const o = objects[i];
-        keys.push(o.key);
-        delete o["key"];
+        ids.push(o.id);
+        delete o["id"];
     }
 
     // run code
     fn();
 
-    // restore keys
+    // restore ids
     for(let i=0;i<objects.length;i++) {
         const o = objects[i];
-        o.key = keys[i];
+        o.id = ids[i];
     }
 }

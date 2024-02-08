@@ -3,19 +3,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.withoutKey = exports.encodeSingleQuote = exports.formatDateTime = exports.isString = exports.isObject = exports.toInt = exports.first = exports.hash = exports.uuid = void 0;
+exports.withoutID = exports.encodeSingleQuote = exports.formatDateTime = exports.isString = exports.isObject = exports.toInt = exports.first = exports.uuid = exports.hash = void 0;
 const uuid_1 = require("uuid");
-const hash_js_1 = __importDefault(require("hash.js"));
-function uuid() {
-    return (0, uuid_1.v4)();
-    //return crypto.randomBytes(16).toString("hex");
-}
-exports.uuid = uuid;
-function hash(data) {
-    return hash_js_1.default.sha256().update("data").digest("hex");
-    //return crypto.createHash("sha256").update(data, "binary").digest("base64");
+const crypto_1 = __importDefault(require("crypto"));
+function hash(salt, value) {
+    return crypto_1.default.createHmac("sha256", salt).update(value).digest("hex");
 }
 exports.hash = hash;
+function uuid() {
+    return (0, uuid_1.v4)();
+}
+exports.uuid = uuid;
 function first(array) {
     if (!array || array.length <= 0)
         return undefined;
@@ -53,21 +51,21 @@ function encodeSingleQuote(val) {
     return val.replace(/'/g, "''");
 }
 exports.encodeSingleQuote = encodeSingleQuote;
-// remove key from the object and add back in at the end
-function withoutKey(objects, fn) {
-    const keys = [];
-    // save keys
+// remove id from the object and add back in at the end
+function withoutID(objects, fn) {
+    const ids = [];
+    // save ids
     for (let i = 0; i < objects.length; i++) {
         const o = objects[i];
-        keys.push(o.key);
-        delete o["key"];
+        ids.push(o.id);
+        delete o["id"];
     }
     // run code
     fn();
-    // restore keys
+    // restore ids
     for (let i = 0; i < objects.length; i++) {
         const o = objects[i];
-        o.key = keys[i];
+        o.id = ids[i];
     }
 }
-exports.withoutKey = withoutKey;
+exports.withoutID = withoutID;
