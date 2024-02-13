@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.withoutID = exports.encodeSingleQuote = exports.formatDateTime = exports.isString = exports.isObject = exports.toInt = exports.first = exports.uuid = exports.hash = void 0;
+exports.mergeObject = exports.withoutID = exports.encodeSingleQuote = exports.now = exports.formatDateTime = exports.isString = exports.isObject = exports.toInt = exports.first = exports.uuid = exports.hash = void 0;
 const uuid_1 = require("uuid");
 const crypto_1 = __importDefault(require("crypto"));
 function hash(salt, value) {
@@ -45,6 +45,10 @@ function formatDateTime(dt) {
     return dt.toISOString();
 }
 exports.formatDateTime = formatDateTime;
+function now() {
+    return formatDateTime(new Date());
+}
+exports.now = now;
 function encodeSingleQuote(val) {
     if (!val)
         return "";
@@ -69,3 +73,26 @@ function withoutID(objects, fn) {
     }
 }
 exports.withoutID = withoutID;
+function mergeObject(obj, into) {
+    if (!into)
+        into = {};
+    if (!obj)
+        return into;
+    let src = obj;
+    let dest = into;
+    for (var m in src) {
+        const vSrc = src[m];
+        let vDest = dest[m];
+        if (isObject(vSrc)) {
+            if (!isObject(vDest)) {
+                vDest = {};
+                dest[m] = vDest;
+            }
+            mergeObject(vSrc, vDest);
+            continue;
+        }
+        dest[m] = vSrc;
+    }
+    return into;
+}
+exports.mergeObject = mergeObject;
