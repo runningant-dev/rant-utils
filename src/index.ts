@@ -34,6 +34,9 @@ export function formatDateTime(dt: Date) {
     if (!dt) return "";
     return dt.toISOString();
 }
+export function now() {
+    return formatDateTime(new Date());
+}
 
 export function encodeSingleQuote(val: string) {
     if (!val) return "";
@@ -59,4 +62,30 @@ export function withoutID(objects: any[], fn: () => void) {
         const o = objects[i];
         o.id = ids[i];
     }
+}
+
+export function mergeObject(obj: any, into: any) {
+    if (!into) into = {};
+    if (!obj) return into;
+
+    let src = obj;
+    let dest = into;
+
+    for(var m in src) {
+        const vSrc = src[m];
+        let vDest = dest[m];
+
+        if (isObject(vSrc)) {
+            if (!isObject(vDest)) {
+                vDest = {};
+                dest[m] = vDest;
+            }
+            mergeObject(vSrc, vDest);
+            continue;
+        } 
+
+        dest[m] = vSrc;
+    }
+
+    return into;
 }
