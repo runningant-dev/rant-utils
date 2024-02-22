@@ -83,6 +83,10 @@ function mergeObject(obj, into) {
     for (var m in src) {
         const vSrc = src[m];
         let vDest = dest[m];
+        if (Array.isArray(vSrc)) {
+            dest[m] = vSrc;
+            continue;
+        }
         if (isObject(vSrc)) {
             if (!isObject(vDest)) {
                 vDest = {};

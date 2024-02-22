@@ -75,6 +75,11 @@ export function mergeObject(obj: any, into: any) {
         const vSrc = src[m];
         let vDest = dest[m];
 
+		if (Array.isArray(vSrc)) {
+			dest[m] = vSrc;
+			continue;
+		}
+
         if (isObject(vSrc)) {
             if (!isObject(vDest)) {
                 vDest = {};
