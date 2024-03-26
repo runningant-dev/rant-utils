@@ -14,10 +14,21 @@ function uuid() {
     return (0, uuid_1.v4)();
 }
 exports.uuid = uuid;
+// if there is an array provided and it has at least 1 element the first is returned
+// otherwise if its not an array but is an object then its returned as-is
+// otherwised undefined
 function first(array) {
-    if (!array || array.length <= 0)
+    if (!array)
         return undefined;
-    return array[0];
+    if (Array.isArray(array)) {
+        if (array.length > 0)
+            return array[0];
+        return undefined;
+    }
+    else if (isObject(array)) {
+        return array;
+    }
+    return undefined;
 }
 exports.first = first;
 function toInt(val, valDefault) {
