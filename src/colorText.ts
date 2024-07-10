@@ -32,5 +32,5 @@ const cols = {
 export type TextColor = keyof typeof cols;
 
 export function colorText(s: string, col: TextColor) {
-	return cols[col] + s + cols["Reset"];
+	return cols[col] + s;
 }

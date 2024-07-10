@@ -29,6 +29,6 @@ const cols = {
     BgGray: "\x1b[100m",
 };
 function colorText(s, col) {
-    return cols[col] + s + cols["Reset"];
+    return cols[col] + s;
 }
 exports.colorText = colorText;
