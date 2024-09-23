@@ -2,7 +2,7 @@
 // if there is an array provided and it has at least 1 element the first is returned
 // otherwise if its not an array but is an object then its returned as-is
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.first = void 0;
+exports.expectArray = exports.first = void 0;
 const validate_convert_1 = require("./validate-convert");
 // otherwised undefined
 function first(array) {
@@ -19,3 +19,11 @@ function first(array) {
     return undefined;
 }
 exports.first = first;
+function expectArray(a) {
+    if (!a)
+        return a;
+    if (Array.isArray(a))
+        return a;
+    return [a];
+}
+exports.expectArray = expectArray;

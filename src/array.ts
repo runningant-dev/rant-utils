@@ -17,3 +17,9 @@ export function first(array: any) {
 
     return undefined;
 }
+
+export function expectArray(a: any) {
+	if (!a) return a;
+	if (Array.isArray(a)) return a;
+	return [a];
+}

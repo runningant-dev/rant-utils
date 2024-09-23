@@ -1,4 +1,3 @@
-
 export * from "./array";
 export * from "./colorText";
 export * from "./format";

@@ -166,7 +166,7 @@ export function numberToWords(number: number): string {
 export function currencyToWords(number: number) {
     const intPortion = Math.floor(number);
     const fraction = number - intPortion;
-    const cents = Math.round(fraction * 100);
+    const cents = (fraction * 100);
 
     let result = "";
 
