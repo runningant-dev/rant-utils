@@ -160,7 +160,7 @@ exports.numberToWords = numberToWords;
 function currencyToWords(number) {
     const intPortion = Math.floor(number);
     const fraction = number - intPortion;
-    const cents = (fraction * 100);
+    const cents = Math.round(fraction * 100000) / 1000;
     let result = "";
     if (intPortion !== 0) {
         result = decimalToWords(intPortion) + (0, pluralize_1.default)(" dollar", intPortion);
