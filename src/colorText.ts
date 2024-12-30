@@ -32,5 +32,12 @@ const cols = {
 export type TextColor = keyof typeof cols;
 
 export function colorText(s: string, col: TextColor) {
-	return cols[col] + s;
+	const c = cols[col];
+
+	if (s && s.indexOf("\n") >= 0) {
+		const parts = s.split("\n")
+		return c + parts.join(cols.Reset + "\n" + c) + cols.Reset;
+	} else {
+		return c + s + cols.Reset;	
+	}
 }

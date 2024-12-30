@@ -29,6 +29,13 @@ const cols = {
     BgGray: "\x1b[100m",
 };
 function colorText(s, col) {
-    return cols[col] + s;
+    const c = cols[col];
+    if (s && s.indexOf("\n") >= 0) {
+        const parts = s.split("\n");
+        return c + parts.join(cols.Reset + "\n" + c) + cols.Reset;
+    }
+    else {
+        return c + s + cols.Reset;
+    }
 }
 exports.colorText = colorText;
