@@ -18,6 +18,19 @@ export function first(array: any) {
     return undefined;
 }
 
+export function last(array: any) {
+    if (!array) return undefined;
+
+	if (Array.isArray(array)) {
+		if (array.length > 0) return array[array.length-1];
+		return undefined;
+	} else if (isObject(array)) {
+		return array;
+	}
+
+    return undefined;
+}
+
 export function expectArray(a: any) {
 	if (!a) return a;
 	if (Array.isArray(a)) return a;
