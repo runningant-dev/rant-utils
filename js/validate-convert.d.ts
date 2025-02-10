@@ -5,6 +5,7 @@ export declare function isObject(val: any): boolean;
 export declare function isString(val: any): boolean;
 export declare function isValidDate(date: any): any;
 export declare function formatDatabaseDateTime(dt: Date): string;
+export declare function formatDatabaseDate(dt: Date): string;
 export declare function utcNow(): string;
 export declare function encodeSingleQuote(val: string): string;
 export declare function flattenString(s: string): string;

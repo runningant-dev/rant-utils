@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.parseDate = exports.invertColor = exports.clean = exports.toBase26Digit = exports.positiveNumberToBase26 = exports.toBase26 = exports.toRomanNumeral = exports.toDate = exports.tomorrow = exports.toJSON = exports.isStr = exports.toStr = exports.toBool = exports.isArray = exports.clone = exports.isPromise = exports.flattenString = exports.encodeSingleQuote = exports.utcNow = exports.formatDatabaseDateTime = exports.isValidDate = exports.isString = exports.isObject = exports.toNumber = exports.toFloat = exports.toInt = void 0;
+exports.parseDate = exports.invertColor = exports.clean = exports.toBase26Digit = exports.positiveNumberToBase26 = exports.toBase26 = exports.toRomanNumeral = exports.toDate = exports.tomorrow = exports.toJSON = exports.isStr = exports.toStr = exports.toBool = exports.isArray = exports.clone = exports.isPromise = exports.flattenString = exports.encodeSingleQuote = exports.utcNow = exports.formatDatabaseDate = exports.formatDatabaseDateTime = exports.isValidDate = exports.isString = exports.isObject = exports.toNumber = exports.toFloat = exports.toInt = void 0;
 const colorText_1 = require("./colorText");
 const format_1 = require("./format");
 function toInt(val, valDefault) {
@@ -50,6 +50,19 @@ function formatDatabaseDateTime(dt) {
     return dt.toISOString();
 }
 exports.formatDatabaseDateTime = formatDatabaseDateTime;
+function formatDatabaseDate(dt) {
+    let result = formatDatabaseDateTime(dt);
+    if (!result)
+        return result;
+    const parts = result.split("T");
+    if (parts.length > 1) {
+        return parts[0];
+    }
+    else {
+        return "";
+    }
+}
+exports.formatDatabaseDate = formatDatabaseDate;
 function utcNow() {
     return formatDatabaseDateTime(new Date());
 }
