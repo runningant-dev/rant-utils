@@ -43,6 +43,16 @@ export function formatDatabaseDateTime(dt: Date) {
     if (!dt) return "";
     return dt.toISOString();
 }
+export function formatDatabaseDate(dt: Date) {
+	let result = formatDatabaseDateTime(dt);
+	if (!result) return result;
+	const parts = result.split("T");
+	if (parts.length > 1) {
+		return parts[0];
+	} else {
+		return "";
+	}
+}
 
 export function utcNow() {
     return formatDatabaseDateTime(new Date());
