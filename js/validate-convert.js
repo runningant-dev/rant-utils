@@ -36,7 +36,8 @@ function isString(val) {
 }
 exports.isString = isString;
 function isValidDate(date) {
-    return date && Object.prototype.toString.call(date) === "[object Date]" && !isNaN(date);
+    const test = date instanceof Date ? date : new Date(date);
+    return !isNaN(date.getTime());
 }
 exports.isValidDate = isValidDate;
 // export function isValidDate(val: any) {

@@ -3,7 +3,7 @@ export declare function toFloat(val: any): number;
 export declare function toNumber(val: any, defaultVal?: number): number;
 export declare function isObject(val: any): boolean;
 export declare function isString(val: any): boolean;
-export declare function isValidDate(date: any): any;
+export declare function isValidDate(date: any): boolean;
 export declare function formatDatabaseDateTime(dt: Date): string;
 export declare function formatDatabaseDate(dt: Date): string;
 export declare function utcNow(): string;
