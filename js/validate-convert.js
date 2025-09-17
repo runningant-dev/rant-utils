@@ -37,7 +37,7 @@ function isString(val) {
 exports.isString = isString;
 function isValidDate(date) {
     const test = date instanceof Date ? date : new Date(date);
-    return !isNaN(date.getTime());
+    return !isNaN(test.getTime());
 }
 exports.isValidDate = isValidDate;
 // export function isValidDate(val: any) {
